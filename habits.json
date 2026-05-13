@@ -1,0 +1,59 @@
+{
+  "habits": [
+    {
+      "id": 1,
+      "name": "watch a horror movie",
+      "description": "it must be scary movie ",
+      "created_date": "2026-04-28",
+      "completed_dates": [
+        "2026-04-28",
+        "2026-04-29",
+        "2026-05-13"
+      ],
+      "color": "#d70909"
+    },
+    {
+      "id": 2,
+      "name": "feeding dog",
+      "description": "at evening times, it must be a biscuits , chicken rice , hot milk rice",
+      "created_date": "2026-04-29",
+      "completed_dates": [
+        "2026-04-29",
+        "2026-05-13"
+      ],
+      "color": "#33dbd8"
+    },
+    {
+      "id": 3,
+      "name": "Go to turf for playing cricket",
+      "description": "at evenings ",
+      "created_date": "2026-04-29",
+      "completed_dates": [
+        "2026-04-29",
+        "2026-05-13"
+      ],
+      "color": "#33b9db"
+    },
+    {
+      "id": 4,
+      "name": "prepare for hackton",
+      "description": "",
+      "created_date": "2026-04-29",
+      "completed_dates": [
+        "2026-04-29",
+        "2026-05-13"
+      ],
+      "color": "#3edb33"
+    },
+    {
+      "id": 5,
+      "name": "complete all records",
+      "description": "by tomorrow",
+      "created_date": "2026-05-13",
+      "completed_dates": [
+        "2026-05-13"
+      ],
+      "color": "#335ddb"
+    }
+  ]
+}

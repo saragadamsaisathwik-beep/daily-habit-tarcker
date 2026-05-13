@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="stats-content">
+    <div class="header">
+        <h2>Your Statistics</h2>
+        <p>Track your progress and achievements</p>
+    </div>
+
+    <div id="statsContainer" class="stats-container">
+        <!-- Stats will be loaded here -->
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        loadStats();
+    });
+
+    function loadStats() {
+        fetch('/api/habits')
+            .then(response => response.json())
+            .then(habits => {
+                const container = document.getElementById('statsContainer');
+                container.innerHTML = '';
+                
+                if (habits.length === 0) {
+                    container.innerHTML = '<p class="no-stats">No habits to show statistics for.</p>';
+                    return;
+                }
+                
+                habits.forEach(habit => {
+                    fetch('/api/stats/' + habit.id)
+                        .then(response => response.json())
+                        .then(stats => {
+                            const statCard = createStatCard(habit, stats);
+                            container.appendChild(statCard);
+                        });
+                });
+            });
+    }
+
+    function createStatCard(habit, stats) {
+        const div = document.createElement('div');
+        div.className = 'stat-card';
+        div.style.borderLeftColor = habit.color;
+        
+        div.innerHTML = `
+            <h3>${stats.habit_name}</h3>
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <span class="stat-label">Total Completed</span>
+                    <span class="stat-value">${stats.total_completed}</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Days Since Start</span>
+                    <span class="stat-value">${stats.days_since_creation}</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Completion Rate</span>
+                    <span class="stat-value">${stats.completion_rate}%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Current Streak</span>
+                    <span class="stat-value">🔥 ${stats.current_streak}</span>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: ${stats.completion_rate}%"></div>
+            </div>
+        `;
+        
+        return div;
+    }
+</script>
+{% endblock %}
